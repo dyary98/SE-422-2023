@@ -167,24 +167,23 @@
 
 //--------------------
 
-//? class lab:  MEdium  ----- Create 24 Threads, each thread should print the follwoing phrase 10, 000 times : "Printed from Thread #"; start all threads together
+//? class lab:  Medium-difficulty  ----- Create 24 Threads, each thread should print the follwoing phrase 10, 000 times : "Printed from Thread #"; start all threads together
 //? Taks 2: Install VisuallVm on your machine and profile your application while its running.
 
 
 package SecondLecture;
 public class Main {
     public static void main(String[] args) throws Exception {
-       Runnable r = new Runnable() {
-            public void run(){
-                for(int i =0; i<10000; i++){
-                    System.out.println("InnerClass");
+        for (int i = 1; i <= 24; i++) {
+
+            int threadNum = i;
+            Thread thread = new Thread(() -> {
+                for (int j = 1; j <= 10000; j++) {
+                    System.out.println("Printed from Thread number " + threadNum + "iteration Number: " + j);
                 }
-            }
-       }; 
-       for (int i =0; i < 14; i++) {
-           Thread t2 = new Thread(r);
-           t2.start();
-       }
+            });
+            thread.start();
+        }
       
     }
 }
