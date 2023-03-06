@@ -1,4 +1,5 @@
 // package SecondLecture;
+// Install better comments exstension
 // public class Main {
 //     public static void main(String[] args) throws Exception {
 //         Thread t1 = new Thread1();

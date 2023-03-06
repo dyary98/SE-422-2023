@@ -1,5 +1,7 @@
 // // 7:12
+//Install better comments exstension
 // //!Life Cycle of a Thread Object 
+
 // // we have some states that we have to be aware of. The first state when we create a Thread Obj is called New, here you only created a new object or a new Thread nothing fancy.
 // // Second State (Runnable) comes when we call the .start() method, which means that we are ready for executing the code in the run method, here we havent called the run method yet, it waits for the operating system to start it, might be busy with other things
 // // Third state (Running) in this state we are actually executing the code, which is in the run method.
