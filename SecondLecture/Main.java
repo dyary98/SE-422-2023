@@ -14,7 +14,7 @@
 //     public void run() {
         
 //     }
-//     //you can not write static with the run method of the Thread Class, because it does not have static inside the Thread class
+//     //!you can not write static with the run method of the Thread Class, because it does not have static inside the Thread class
 // }
 
 
