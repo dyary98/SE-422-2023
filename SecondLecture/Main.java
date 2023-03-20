@@ -1,5 +1,8 @@
+
+
 // package SecondLecture;
-// Install better comments exstension
+//!!! Install "better comments" exstension daibazena kakaaaaaaaa
+
 // public class Main {
 //     public static void main(String[] args) throws Exception {
 //         Thread t1 = new Thread1();
@@ -59,26 +62,18 @@
 // public class Main {
 //     public static void main(String[] args) throws Exception {
 //        Runnable r = new Runnable() {
-//         //this means that: java create a class and make this class implement the class runnable
-//         public void run(){
-//             System.out.println("InnerClass");
-//         }
-//        }; 
-      
+//             //this means that: java create a class and make this class implement the class runnable
+//             public void run(){
+//                 while (true) {
+//                     System.out.println("InnerClass");
+//                 }
+//             }
+//        };
+
+//        Thread t = new Thread(r);
+//         t.start(); 
 //     }
 // }
-
-// class Thread1 implements Runnable {
-    
-//     @Override
-//     public void run() {
-//         while (true) {
-//             System.out.println("Running Thread1");
-//         }
-//     }
-// }
-
-
 
 //-----------------------------------------------------------
 
@@ -120,10 +115,11 @@
 //-----------------------------------------------------------
 
 // //!what if we had only 8 cores ?, and we have 15 Thread
-// //only 8 of them run at the same time, but it looks like all of them are running at the same time 
-// //scheduling, context switching, shareing resources--------------> Concurrrency 
-// // parallelism: multiple tasks runnning at the same time
-// // we are running 15 Threads concurently, and 8 Threads in parallel 
+// //  only 8 of them run at the same time, but it looks like all of them are running at the same time 
+// //  scheduling, context switching, shareing resources--------------> Concurrrency 
+// //  parallelism: multiple tasks runnning at the same time
+// //  we are running 15 Threads concurently, and 8 Threads in parallel
+
 // package SecondLecture;
 // public class Main {
 //     public static void main(String[] args) throws Exception {
@@ -141,8 +137,6 @@
       
 //     }
 // }
-
-
 
 //-----------------------------------------------------------
 // //!lets say we have 8 cores is it faster to use 300 Threads to do the a task or do it with 14 Threads 
@@ -168,24 +162,23 @@
 
 //--------------------
 
-//? class lab:  Medium-difficulty  ----- Create 24 Threads, each thread should print the follwoing phrase 10, 000 times : "Printed from Thread #"; start all threads together
-//? Taks 2: Install VisuallVm on your machine and profile your application while its running.
+// //? class lab:  Medium-difficulty  ----- Create 24 Threads, each thread should print the follwoing phrase 10, 000 times : "Printed from Thread #"; start all threads together
+// //? Taks 2: Install VisuallVm on your machine and profile your application while its running.
 
 
-package SecondLecture;
-public class Main {
-    public static void main(String[] args) throws Exception {
-        for (int i = 1; i <= 24; i++) {
-
-            int threadNum = i;
-            Thread thread = new Thread(() -> {
-                for (int j = 1; j <= 10000; j++) {
-                    System.out.println("Printed from Thread number " + threadNum + "iteration Number: " + j);
-                }
-            });
-            thread.start();
-        }
+// package SecondLecture;
+// public class Main {
+//     public static void main(String[] args) throws Exception {
+//         for (int i = 1; i <= 24; i++) {
+//             int threadNum = i;
+//             Thread thread = new Thread(() -> {
+//                 for (int j = 1; j <= 10000; j++) {
+//                     System.out.println("Printed from Thread number " + threadNum + "iteration Number: " + j);
+//                 }
+//             });
+//             thread.start();
+//         }
       
-    }
-}
+//     }
+// }
 

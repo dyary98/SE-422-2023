@@ -1,62 +1,62 @@
 // // 7:12
 //Install better comments exstension
-// //!Life Cycle of a Thread Object 
+//!Life Cycle of a Thread Object 
 
-// // we have some states that we have to be aware of. The first state when we create a Thread Obj is called New, here you only created a new object or a new Thread nothing fancy.
-// // Second State (Runnable) comes when we call the .start() method, which means that we are ready for executing the code in the run method, here we havent called the run method yet, it waits for the operating system to start it, might be busy with other things
-// // Third state (Running) in this state we are actually executing the code, which is in the run method.
+// we have some states that we have to be aware of. The first state when we create a Thread Obj is called New, here you only created a new object or a new Thread nothing fancy.
+// Second State (Runnable) comes when we call the .start() method, which means that we are ready for executing the code in the run method, here we havent called the run method yet, it waits for the operating system to start it, might be busy with other things
+// Third state (Running) in this state we are actually executing the code, which is in the run method.
 
-// //              New State _______________stop()_______________> Dead
-// //                  ||
-// //                  || start()
-// //                  ||
-// //     resume()     \/
-// //   --------> Runnable _______________stop()_______________> Dead
-// //   | notify()      ||            /\
-// //   |               || run()      || yield()
-// //   |               ||            ||
-// //   |               \/            || 
-// //   |           Running _______________End of Execution_______________> Dead
-// //   |               ||
-// //   |               || suspend(), wait(), delete()
-// //   |               ||
-// //   |               \/
-// //   ___________Blocked _______________stop()_______________> Dead
+//!             New State _______________stop()_______________> Dead
+//                  ||
+//                  || start()
+//                  ||
+//     resume()     \/
+//!  --------> Runnable _______________stop()_______________> Dead
+//   | notify()      ||            /\
+//   |               || run()      || yield()
+//   |               ||            ||
+//   |               \/            || 
+//!  |           Running _______________End of Execution_______________> Dead
+//   |               ||
+//   |               || suspend(), wait(), delete()
+//   |               ||
+//   |               \/
+//!  ___________Blocked _______________stop()_______________> Dead
 
-// // There is no way in which we can go back to the new state(A Thread once started you can not start it again)
+// There is no way in which we can go back to the new state(A Thread once started you can not start it again)
 
-// package ThirdLecture;
+package ThirdLecture;
 
-// public class Main {
-//     public static void main(String[] args) {
-//         //New state
-//         Thread w1 = new Worker1();
-//         Thread w2 = new Worker2();
+public class Main {
+    public static void main(String[] args) {
+        //New state
+        Thread w1 = new Worker1();
+        Thread w2 = new Worker2();
 
-//         //runnable state
-//         w1.start();
+        //runnable state
+        w1.start();
         
-//         //runnable state
-//         w2.start();
+        //runnable state
+        w2.start();
 
-//         w1 = new Worker1();
-//         w1.start();
-//     }
-// }
+        w1 = new Worker1();
+        w1.start();
+    }
+}
 
-// class Worker1 extends Thread{
-//     @Override
-//     public void run(){
+class Worker1 extends Thread{
+    @Override
+    public void run(){
 
-//     }
-// }
+    }
+}
 
-// class Worker2 extends Thread{
-//     @Override
-//     public void run(){
+class Worker2 extends Thread{
+    @Override
+    public void run(){
         
-//     }
-// }
+    }
+}
 
 
 
@@ -65,7 +65,8 @@
 
 
 
-// //!When a Java program starts, it creates a main thread that is a non-daemon thread. If the main thread creates additional threads and any of them are marked as daemon threads using the setDaemon(true) method, then the JVM will terminate when all non-daemon threads have completed, regardless of whether the daemon threads have finished their work.
+// //!When a Java program starts, it creates a main thread that is a non-daemon thread. If the main thread creates additional threads and any of them are marked as daemon threads using the setDaemon(true) method, 
+// //!then the JVM will terminate when all non-daemon threads have completed, regardless of whether the daemon threads have finished their work.
 // package ThirdLecture;
 
 // public class Main {
@@ -147,7 +148,6 @@
 //             try {
 //                 sleep(1000);
 //             } catch (InterruptedException e) {
-//                 // TODO Auto-generated catch block
 //                 e.printStackTrace();
 //             }
 
@@ -164,7 +164,6 @@
 //             try {
 //                 sleep(i);
 //             } catch (InterruptedException e) {
-//                 // TODO Auto-generated catch block
 //                 e.printStackTrace();
 //             }
 //         }
@@ -303,52 +302,52 @@
 
 
 //------------------------------------------------------
-//! Create Two threads the second thread should start the first Thread after 5 seconds
+// //? Create Two threads, The second thread should start the first Thread after 5 seconds
 
-package ThirdLecture;
-public class Main {
-    public static void main(String[] args) throws InterruptedException {
-       Thread t1 = new Worker1(); 
-       Thread t2 = new Worker2(t1); 
-       t2.start();
+// package ThirdLecture;
+// public class Main {
+//     public static void main(String[] args) throws InterruptedException {
+//        Thread t1 = new Worker1(); 
+//        Thread t2 = new Worker2(t1); 
+//        t2.start();
   
-    }
-}
+//     }
+// }
 
-class Worker1 extends Thread  {
-        @Override
-        public void run() {
-            try {
-                for (int i = 0; i < 1000; i++) {
-                    System.out.println("worker 1 " + i);
-                    if(i == 5) break;
-                    Thread.sleep(1000);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+// class Worker1 extends Thread  {
+//         @Override
+//         public void run() {
+//             try {
+//                 for (int i = 0; i < 1000; i++) {
+//                     System.out.println("worker 1 " + i);
+//                     if(i == 5) break;
+//                     Thread.sleep(1000);
+//                 }
+//             } catch (InterruptedException e) {
+//                 e.printStackTrace();
+//             }
             
-        }
-}
-class Worker2 extends Thread {
-    Thread t1;
-    public Worker2(Thread t1){
-        this.t1 = t1;
-    }
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(5000);
-                t1.start();
+//         }
+// }
+// class Worker2 extends Thread {
+//     Thread t1;
+//     public Worker2(Thread t1){
+//         this.t1 = t1;
+//     }
+//         @Override
+//         public void run() {
+//             try {
+//                 Thread.sleep(5000);
+//                 t1.start();
                 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//             } catch (InterruptedException e) {
+//                 e.printStackTrace();
+//             }
             
-        }
-}
+//         }
+// }
 
 
-//Interupt will triger the InterruptedException catch 
-// suspend will put the thread into the blocked state forever unless you call resume it will resume the thread
-//stop kills the thread and puts it into the dead state
+// Interupt ............ will triger the InterruptedException catch 
+// suspend ............. will put the thread into the blocked state forever unless you call resume it will resume the thread
+// stop ................ kills the thread and puts it into the dead state

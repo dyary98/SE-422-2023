@@ -11,7 +11,7 @@
 //         //below infinite loop
 //         PrintTask t1 = new PrintTask();
 //         t1.runTask();
-//         //the lines below wont be executed because it does not reach their
+//         //!the lines below wont be executed because it does not reach their
 //         PrintTask t2 = new PrintTask();
 //         t2.runTask();
         
@@ -35,7 +35,7 @@
 
 
 
-// //multithreading for the rescue
+// //!multithreading for the rescue
 // //you create branches that can be executed at the same time 
 // package firstLecture;
 
@@ -88,7 +88,7 @@
 //         PrintTask t2 = new PrintTask();
 //         t1.start();
 //         t2.start();
-//         // these thread run in paralel and if you have enough cores they should work in paralel
+//         //! these thread run in paralel and if you have enough cores they should work in paralel
 //         //the problem that sometimes you see to different range of numbers when u run the code is because--
 //         // -- one core might be slower than the other and it will create the difference 
         
@@ -122,7 +122,7 @@
 //         PrintSe422Task t2 = new PrintSe422Task();
 //         t1.start();
 //         t2.start();
-//         //prove that the main class dont have any loops in it 
+//         //!prove that the main class dont have any loops in it 
 //         // if we see the following line in our code proves that the infinite loops are not inside the Main thread but rahter in the other Threads
 //         System.out.println("Hello from Main");
         
@@ -150,8 +150,8 @@
 //------------------------------------------------------
 
 
-// //in class lab
-// // Print our name, your Auis Email, age, the course u r taking today, each print should run under a different Thread
+// //?in class lab
+// //? Print your name, Email, age, the course u r taking today, each print should run under a different Thread
 // package firstLecture;
 
 // public class Main {
@@ -197,7 +197,7 @@
     
 // }
 
-//----------------------------------------------------
+// // ----------------------------------------------------
 
 
 // package firstLecture;
@@ -218,8 +218,8 @@
 //         t3.run();
 //         t4.run();
 
-//         //the lines above does not create threads but rahter behaves just like any other object 
-//         //in plane english this is not multithreading 
+//         //!the lines above does not create threads but rahter behaves just like any other object 
+//         //!in plane english this is not multithreading 
 //     }
 // }
 
@@ -250,64 +250,39 @@
 
 
 
-//Create 7 Threads and each one of them print your name in endless loop
+// //?Create 7 Threads and each one of them print your name in endless loop
 
-package firstLecture;
+// package firstLecture;
 
-public class Main {
+// public class Main {
 
-    public static void main(String[] args) {
+//     public static void main(String[] args) {
     
-        PrintName t1 = new PrintName();
-        PrintName t2 = new PrintName();
-        PrintName t3 = new PrintName();
-        PrintName t4 = new PrintName();
-        PrintName t5 = new PrintName();
-        PrintName t6 = new PrintName();
-        PrintName t7 = new PrintName();
-        PrintName t8 = new PrintName();
-        PrintName t9 = new PrintName();
-        PrintName t11 = new PrintName();
-        PrintName t12= new PrintName();
-        PrintName t14= new PrintName();
-        PrintName t16= new PrintName();
-        PrintName t19= new PrintName();
-       
+//         PrintName t1 = new PrintName();
+//         PrintName t2 = new PrintName();
+//         PrintName t3 = new PrintName();
+//         PrintName t4 = new PrintName();
+//         PrintName t5 = new PrintName();
+//         PrintName t6 = new PrintName();
+//         PrintName t7 = new PrintName();
         
-        t1.start();
-        t2.start();
-        t3.start();
-        t4.start();
-        t5.start();
-        t6.start();
-        t7.start();
-    }
-}
+//         t1.start();
+//         t2.start();
+//         t3.start();
+//         t4.start();
+//         t5.start();
+//         t6.start();
+//         t7.start();
+//     }
+// }
 
- class PrintName extends Thread {
-    public void run() {
-        for (int i = 0; true; i++) {
-            System.out.print("dyary");        }
-    }
-    
-}
-//  class PrintEmail extends Thread {
+//  class PrintName extends Thread {
 //     public void run() {
-//         System.out.println("dy19179@auis.edu.krd");
+//         for (int i = 0; true; i++) {
+//             System.out.print("dyary");        }
 //     }
     
 // }
-//  class PrintAge extends Thread {
-//     public void run() {
-//         System.out.println("21");
-//     }
-    
-// }
-//  class PrintTodaysCourse extends Thread {
-//     public void run() {
-//         System.out.println("SE422");
-//     }
-    
-// }
+
 
 
