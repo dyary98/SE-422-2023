@@ -37,7 +37,6 @@
 
 // //!multithreading for the rescue
 // //you create branches that can be executed at the same time 
-// package firstLecture;
 
 
 // public class Main {
@@ -45,11 +44,10 @@
 //     public static void main(String[] args) {
         
 //         System.out.println("Beg Main");
-
-    
 //         PrintTask t1 = new PrintTask();
 //         PrintTask t2 = new PrintTask();
 //         //starts the run method
+        
 //         t1.start();
 //         t2.start();
         
@@ -60,6 +58,8 @@
 
 //     //we need to override a method that is already inside the Thread class
 //     // the run method been declared in the Thread class but not initialized
+    
+//     @Override
 //     public void run() {
 //         System.out.println("Hello from Thread");
 //     }
@@ -75,7 +75,7 @@
 
 
 
-// package firstLecture;
+// // package firstLecture;
 
 // public class Main {
 
@@ -83,7 +83,6 @@
         
 //         System.out.println("Beg Main");
 
-    
 //         PrintTask t1 = new PrintTask();
 //         PrintTask t2 = new PrintTask();
 //         t1.start();
@@ -104,12 +103,9 @@
 // }
 
 
-
-
 //----------------------------------------------
 
 
-// package firstLecture;
 
 // public class Main {
 
@@ -118,8 +114,8 @@
 //         System.out.println("Beg Main");
 
     
-//         PrintAUISTask t1 = new PrintAUISTask();
-//         PrintSe422Task t2 = new PrintSe422Task();
+//         PrintAUIS t1 = new PrintAUIS();
+//         PrintSe422 t2 = new PrintSe422();
 //         t1.start();
 //         t2.start();
 //         //!prove that the main class dont have any loops in it 
@@ -129,7 +125,7 @@
 //     }
 // }
 
-//  class PrintAUISTask extends Thread {
+//  class PrintAUIS extends Thread {
 //     public void run() {
 //         for (long i = 0 ; true; i++) {
 //             System.out.print("AUIS");
@@ -137,7 +133,7 @@
 //     }
     
 // }
-//  class PrintSe422Task extends Thread {
+//  class PrintSe422 extends Thread {
 //     public void run() {
 //         for (long i = 0 ; true; i++) {
 //             System.out.print("SE422 ");
@@ -152,7 +148,6 @@
 
 // //?in class lab
 // //? Print your name, Email, age, the course u r taking today, each print should run under a different Thread
-// package firstLecture;
 
 // public class Main {
 
@@ -162,13 +157,14 @@
 //         PrintEmail t2 = new PrintEmail();
 //         PrintAge t3 = new PrintAge();
 //         PrintTodaysCourse t4 = new PrintTodaysCourse();
-//         for (int i = 0; i<1000; i++) {
-//             System.out.println("Dyary");
-//         }
 //         t1.start();
 //         t2.start();
 //         t3.start();
 //         t4.start();
+//         System.out.println("Main Thread is done");
+//         // for (int i = 0; true; i++) {
+//         //     System.out.println("Dyary");
+//         // }
 //     }
 // }
 
@@ -180,7 +176,7 @@
 // }
 //  class PrintEmail extends Thread {
 //     public void run() {
-//         System.out.println("dy19179@auis.edu.krd");
+//             System.out.println("dy19179@auis.edu.krd");
 //     }
     
 // }
@@ -197,10 +193,8 @@
     
 // }
 
-// // ----------------------------------------------------
+// ----------------------------------------------------
 
-
-// package firstLecture;
 
 // public class Main {
 
@@ -210,9 +204,9 @@
 //         PrintEmail t2 = new PrintEmail();
 //         PrintAge t3 = new PrintAge();
 //         PrintTodaysCourse t4 = new PrintTodaysCourse();
-//         for (int i = 0; i<1000; i++) {
-//             System.out.println("Dyary");
-//         }
+//         // for (int i = 0; i<1000; i++) {
+//         //     System.out.println("Dyary");
+//         // }
 //         t1.run();
 //         t2.run();
 //         t3.run();
@@ -252,7 +246,6 @@
 
 // //?Create 7 Threads and each one of them print your name in endless loop
 
-// package firstLecture;
 
 // public class Main {
 
@@ -277,12 +270,14 @@
 // }
 
 //  class PrintName extends Thread {
+
+//     @Override
 //     public void run() {
-//         for (int i = 0; true; i++) {
+//         while(true){
 //             System.out.print("dyary");        }
 //     }
-    
-// }
+//  }
+
 
 
 

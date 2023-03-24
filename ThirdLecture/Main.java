@@ -1,62 +1,65 @@
 // // 7:12
-//Install better comments exstension
-//!Life Cycle of a Thread Object 
+// //Install better comments exstension
+// //!Life Cycle of a Thread Object 
 
-// we have some states that we have to be aware of. The first state when we create a Thread Obj is called New, here you only created a new object or a new Thread nothing fancy.
-// Second State (Runnable) comes when we call the .start() method, which means that we are ready for executing the code in the run method, here we havent called the run method yet, it waits for the operating system to start it, might be busy with other things
-// Third state (Running) in this state we are actually executing the code, which is in the run method.
+// // we have some states that we have to be aware of. The first state when we create a Thread Obj is called New, here you only created a new object or a new Thread nothing fancy.
+// // Second State (Runnable) comes when we call the .start() method, which means that we are ready for executing the code in the run method, here we havent called the run method yet, it waits for the operating system to start it, might be busy with other things
+// // Third state (Running) in this state we are actually executing the code, which is in the run method.
 
-//!             New State _______________stop()_______________> Dead
-//                  ||
-//                  || start()
-//                  ||
-//     resume()     \/
-//!  --------> Runnable _______________stop()_______________> Dead
-//   | notify()      ||            /\
-//   |               || run()      || yield()
-//   |               ||            ||
-//   |               \/            || 
-//!  |           Running _______________End of Execution_______________> Dead
-//   |               ||
-//   |               || suspend(), wait(), delete()
-//   |               ||
-//   |               \/
-//!  ___________Blocked _______________stop()_______________> Dead
+// //!             New State _______________stop()_______________> Dead
+// //                  ||
+// //                  || start()
+// //                  ||
+// //     resume()     \/
+// //!  --------> Runnable _______________stop()_______________> Dead
+// //   | notify()      ||            /\
+// //   |               || run()      || yield()
+// //   |               ||            ||
+// //   |               \/            || 
+// //!  |           Running _______________End of Execution_______________> Dead
+// //   |               ||
+// //   |               || suspend(), wait(), delete()
+// //   |               ||
+// //   |               \/
+// //!  ___________Blocked _______________stop()_______________> Dead
 
-// There is no way in which we can go back to the new state(A Thread once started you can not start it again)
+// // There is no way in which we can go back to the new state(A Thread once started you can not start it again)
 
-package ThirdLecture;
+// package ThirdLecture;
 
-public class Main {
-    public static void main(String[] args) {
-        //New state
-        Thread w1 = new Worker1();
-        Thread w2 = new Worker2();
+// public class Main {
+//     public static void main(String[] args) {
+//         //New state
+//         Thread w1 = new Worker1();
+//         Thread w2 = new Worker2();
+//         Worker1 w3 = new Worker1();
 
-        //runnable state
-        w1.start();
+//         //runnable state
+//         // you have created a thread 
+//         // means you are ready to call run method
+//         w1.start();
         
-        //runnable state
-        w2.start();
+//         //runnable state
+//         w2.start();
 
-        w1 = new Worker1();
-        w1.start();
-    }
-}
+//         w1 = new Worker1();
+//         w1.start();
+//     }
+// }
 
-class Worker1 extends Thread{
-    @Override
-    public void run(){
+// class Worker1 extends Thread{
+//     @Override
+//     public void run(){
 
-    }
-}
+//     }
+// }
 
-class Worker2 extends Thread{
-    @Override
-    public void run(){
+// class Worker2 extends Thread{
+//     @Override
+//     public void run(){
         
-    }
-}
+//     }
+// }
 
 
 
@@ -75,8 +78,10 @@ class Worker2 extends Thread{
 //         Thread w1 = new Worker1();
 //         Thread w2 = new Worker2();
 
-//         w1.setDaemon(true);
-//         w2.setDaemon(false);
+//         // w1.setDaemon(true); // daemon thread
+
+//         // //default 
+//         // w2.setDaemon(false);
 //         w1.start();
 //         w2.start();
 
@@ -88,9 +93,10 @@ class Worker2 extends Thread{
 //     public void run(){
 //         for (int i = 0; i < 100000; i++) {
 //             System.out.print("Thread 1 :" + i + " " );
+
 //             //it Will put it into blocked state
 //             try {
-//                 sleep(1000);
+//                 sleep(1000 * 10); // 10s
 //             } catch (InterruptedException e) {
 //                 // TODO Auto-generated catch block
 //                 e.printStackTrace();
@@ -103,13 +109,12 @@ class Worker2 extends Thread{
 // class Worker2 extends Thread{
 //     @Override
 //     public void run(){
-//         for (int i = 0; i < 100000; i++) {
+//         for (int i = 0; i < 100000; i+=10 ){
 //             System.out.print("Thread 2 :" + i  + " " );
-//             //it Will put it into blocked state
 //             try {
+//                 //it Will put it into blocked state
 //                 sleep(i);
 //             } catch (InterruptedException e) {
-//                 // TODO Auto-generated catch block
 //                 e.printStackTrace();
 //             }
 //         }
@@ -128,12 +133,11 @@ class Worker2 extends Thread{
 //         Thread w1 = new Worker1();
 //         Thread w2 = new Worker2();
 
-//         w1.setDaemon(true);
-//         w2.setDaemon(false);
+        
 //         w1.start();
 //         w2.start();
         
-//         //We can not do the following in the main Thread
+//         //!We can not do the following in the main Thread
 //         // sleep(1000) we have to do 
 //         Thread.sleep(3000);
 //     }
@@ -174,8 +178,8 @@ class Worker2 extends Thread{
 //------------------------------------------------------
 
 
-// //! In class Lab
-// //? Write a simple java application to print your name every 5 secs
+//? In class Lab
+//? Write a simple java application to print your name every 5 secs
 
 // package ThirdLecture;
 
@@ -184,9 +188,8 @@ class Worker2 extends Thread{
       
 //         for (int i = 0; i < 1000; i++) {
 //             System.out.println("Dyary");
-//             Thread.sleep(5000);
+//             Thread.sleep(5000); //5s
 //         }
-    
 //     }
 // }
 
@@ -223,7 +226,7 @@ class Worker2 extends Thread{
 
 //------------------------------------------------------
 
-//! Second In-Class Lab
+// //? Second In-Class Lab
 // //? Write a simple java application to print your name every 5 secs for the next two hours
 
 // package ThirdLecture;
@@ -240,8 +243,9 @@ class Worker2 extends Thread{
 //     public void run() {
 //         try {
 //             for (int i = 0; i < 1440; i++) { //1440 * 5 = 7200 secs
+//                 //7200s / 60 = 120m = 2hours
 //                 System.out.println("Sa3a");
-//                 Thread.sleep(5000); 
+//                 Thread.sleep(1000 * 5); 
 //             }
 //         } catch (InterruptedException e) {
 //             System.out.println("Thread interrupted");
@@ -253,13 +257,14 @@ class Worker2 extends Thread{
 
 //------------------------------------------------------
 
-//! How to terminate or change a Thread state into dead state
-//1:02:00
+// //! How to terminate or change a Thread state into dead state
+// // 1:02:00
 // package ThirdLecture;
 // public class Main {
 //     public static void main(String[] args) throws InterruptedException {
 //        Thread t1 = new Thread(new Worker1()); 
 //        Thread t2 = new Thread(new Worker2()); 
+    
 //        t1.start();
 //        t2.start();
 //     }
@@ -269,15 +274,16 @@ class Worker2 extends Thread{
 //         @Override
 //         public void run() {
 //             try {
-
 //                 //stops after 5 secs
 //                 for (int i = 0; i < 1000; i++) {
 //                     System.out.println("worker 1 " + i);
 //                     if(i == 5) break;
-//                     //if(i == 5) return;
+//                     if(i == 5) return;
 //                     Thread.sleep(1000);
                     
 //                 }
+                
+
 //             } catch (InterruptedException e) {
 //                 e.printStackTrace();
 //             }
@@ -320,7 +326,6 @@ class Worker2 extends Thread{
 //             try {
 //                 for (int i = 0; i < 1000; i++) {
 //                     System.out.println("worker 1 " + i);
-//                     if(i == 5) break;
 //                     Thread.sleep(1000);
 //                 }
 //             } catch (InterruptedException e) {

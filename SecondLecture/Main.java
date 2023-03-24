@@ -1,22 +1,25 @@
 
 
 // package SecondLecture;
-//!!! Install "better comments" exstension daibazena kakaaaaaaaa
+// // !!! Install "better comments" exstension daibazena kakaaaaaaaa
 
 // public class Main {
 //     public static void main(String[] args) throws Exception {
-//         Thread t1 = new Thread1();
-//         //Thread1 t1 = new Thread1() 
+//         // amaian bakarbena tkaaya
+//         TestThread t1 = new TestThread();
 //         t1.start();
-
+//         t1.printTask();
 //     }
 // }
 
-// class Thread1 extends Thread {
+// class TestThread extends Thread  {
     
 //     @Override
 //     public void run() {
         
+//     }
+//     public void printTask(){
+
 //     }
 //     //!you can not write static with the run method of the Thread Class, because it does not have static inside the Thread class
 // }
@@ -33,19 +36,30 @@
 
 // //disadvantage: its more code 
 
-// package SecondLecture;
 // public class Main {
 //     public static void main(String[] args) throws Exception {
 //         //we cannot call the start method because the only method that Thread1 has is run
 //         //so we are creating an object like before but we gonna pass it to a Thread obj that have a start method 
-//         Thread t1 = new Thread(new Thread1());
-//         t1.start();
+        
+        
+//         // am regaya xalata
+//         // Test t2 = new Test();
+//         // t2.start();
+        
+        
+//         // ama rasta 
+//         Test t1 = new Test();
+//         Thread thread1 = new Thread(t1);
+//         thread1.start();
+        
+//         Thread t23 = new Thread(new Test());
+//         t23.start();
+
 //     }
 // }
-
-// class Thread1 implements Runnable {
+// // class TestThread extends Thread
+// class Test implements Runnable  {
     
-//     @Override
 //     public void run() {
 //         while (true) {
 //             System.out.println("Running Thread1");
@@ -57,8 +71,7 @@
 
 //-----------------------------------------------------------
 
-// //!for things that happen once not on a regular basis, use the annonymous class
-// package SecondLecture;
+// //!for things that happen once, not on a regular basis, use the annonymous class
 // public class Main {
 //     public static void main(String[] args) throws Exception {
 //        Runnable r = new Runnable() {
@@ -69,20 +82,23 @@
 //                 }
 //             }
 //        };
-
+    
 //        Thread t = new Thread(r);
 //         t.start(); 
 //     }
 // }
 
 //-----------------------------------------------------------
-
-// package SecondLecture;
+// //! creatin infinite threads
+// //? Write a small java application to create inifinte Threads each printing your name infinetely
 // public class Main {
 //     public static void main(String[] args) throws Exception {
+        
 //        Runnable r = new Runnable() {
 //             public void run(){
-//                 System.out.println("InnerClass");
+//                 for(;true;){
+//                     System.out.println("InnerClass");
+//                 }
 //             }
 //        }; 
 //        while (true) {
@@ -95,7 +111,6 @@
 
 //-----------------------------------------------------------
 
-// package SecondLecture;
 // public class Main {
 //     public static void main(String[] args) throws Exception {
 //        Runnable r = new Runnable() {
@@ -114,13 +129,24 @@
 // }
 //-----------------------------------------------------------
 
-// //!what if we had only 8 cores ?, and we have 15 Thread
+// //!what if we had only 8 available cores ?, and we have 15 Thread
 // //  only 8 of them run at the same time, but it looks like all of them are running at the same time 
 // //  scheduling, context switching, shareing resources--------------> Concurrrency 
 // //  parallelism: multiple tasks runnning at the same time
 // //  we are running 15 Threads concurently, and 8 Threads in parallel
 
-// package SecondLecture;
+
+
+//! If you have 8 cores and you create 8 threads, that can potentially achieve parallelism, but it depends on how the threads are scheduled and how much CPU time each thread requires.
+
+//! If the operating system is able to schedule each thread to run on a separate core, and each thread requires significant CPU time, then the threads can run in parallel, taking advantage of all 8 cores.
+
+//! However, if the operating system is not able to schedule each thread to run on a separate core (e.g., due to contention for other system resources), or if each thread does not require significant CPU time
+//!  (e.g., if the threads are mostly waiting for I/O or synchronization), then the threads may not run in parallel, and instead may run concurrently on fewer than 8 cores. In this case, the program is still
+//!   using multithreading for concurrency, but not necessarily achieving parallelism.
+
+
+
 // public class Main {
 //     public static void main(String[] args) throws Exception {
 //        Runnable r = new Runnable() {
@@ -140,8 +166,6 @@
 
 //-----------------------------------------------------------
 // //!lets say we have 8 cores is it faster to use 300 Threads to do the a task or do it with 14 Threads 
-
-// package SecondLecture;
 // public class Main {
 //     public static void main(String[] args) throws Exception {
 //        Runnable r = new Runnable() {
@@ -165,20 +189,20 @@
 // //? class lab:  Medium-difficulty  ----- Create 24 Threads, each thread should print the follwoing phrase 10, 000 times : "Printed from Thread #"; start all threads together
 // //? Taks 2: Install VisuallVm on your machine and profile your application while its running.
 
-
-// package SecondLecture;
-// public class Main {
-//     public static void main(String[] args) throws Exception {
-//         for (int i = 1; i <= 24; i++) {
-//             int threadNum = i;
-//             Thread thread = new Thread(() -> {
-//                 for (int j = 1; j <= 10000; j++) {
-//                     System.out.println("Printed from Thread number " + threadNum + "iteration Number: " + j);
-//                 }
-//             });
-//             thread.start();
-//         }
-      
-//     }
-// }
+public class Main {
+    public static void main(String[] args) throws Exception {
+        for (int i = 1; i <= 24; i++) {
+            int threadNumber = i;
+            Runnable r = new Runnable() {
+                public void run() {
+                    for (int j = 0; j < 10000; j++) {
+                        System.out.println("Printed from Thread " + threadNumber + "iteration number" + j);
+                    }
+                }
+            };
+            Thread t = new Thread(r);
+            t.start();
+        }
+    }
+}
 
