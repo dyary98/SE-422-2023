@@ -35,8 +35,8 @@
 
 
 
-// //!multithreading for the rescue
-// //you create branches that can be executed at the same time 
+// !multithreading for the rescue
+// you create branches that can be executed at the same time 
 
 
 // public class Main {

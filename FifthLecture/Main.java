@@ -148,7 +148,7 @@
 
 // }
 // class Ticket {
-//     //The keyword static, no matter how many objects you have all of them has the same counter variable 
+    //The keyword static, no matter how many objects you have all of them has the same counter variable 
 //     private static int counter;
 //     public synchronized int next(){
 //         counter++;
