@@ -69,17 +69,129 @@ package Lecture_7;
 // }
 
 ///---------------------------------------------------
-//! what is the best size for the Q
+// //! what is the best size for the Q
+// import java.util.concurrent.ExecutorService;
+// import java.util.concurrent.Executors;
+
+// public class Main {
+//     public static void main(String[] args) {
+//         int cores = Runtime.getRuntime().availableProcessors(); // it will tell you your logical cores
+//         ExecutorService pool = Executors.newFixedThreadPool(cores);
+//         for (int i = 0; i < 20; i++) {
+//             pool.submit(new Task());           
+//         }
+//     }
+// }
+
+// class Task implements Runnable{
+//     public void run(){
+//         for (int i = 0; true; i++) {
+//             System.out.println(i);
+//             Thread t1 = new Thread(){
+//                 public void run(){
+//                     System.out.println();
+//                 }
+//             };
+//         }
+//     }
+// }
+
+//_______________________END part One 
+//_______________________Part TWO
+// Threadpool:  a tool for managin threads
+// !This is not the single best sol for every scenario
+// !this is the easiest
+// import java.util.concurrent.ExecutorService;
+// import java.util.concurrent.Executors;
+
+// public class Main {
+//     public static void main(String[] args) {
+//         int cores = Runtime.getRuntime().availableProcessors(); // it will tell you your logical cores
+//         ExecutorService pool = Executors.newFixedThreadPool(cores);
+//         for (int i = 0; i < 20; i++) {
+//             pool.submit(new Task());           
+//         }
+//         pool.shutdown();// you can not submit tasks to it and all your threads will die
+//         pool.awaitTermination(cores, null)// gives you a delay and then shutsdwon
+        
+//         pool.isShutdown();
+//         pool.isTerminated();
+//     }
+// }
+
+// class Task implements Runnable{
+//     public void run(){
+//         for (int i = 0; true; i++) {
+//             System.out.println(i);
+//             Thread t1 = new Thread(){
+//                 public void run(){
+//                     System.out.println();
+//                 }
+//             };
+//         }
+//     }
+// }
+
+
+//________________________________________________
+
+// //! cached Threadpool
+// //When the pool is created no thread is created, it depends on the tasks if you sumbit 10 tasks it will create 10 threads, 100 100 threads, but if you have an ideal thread....
+// // and you submit a task to it and the 60 second of the ideal thread hasnt passed, it will not create another thread but rather uses the ideal thread to execute the task
+// // automatically if a thread was ideal for 60secs, java will terminate it 
+// // This sol is very dynamic and it it really good when you have lots of small tasks                    
+// import java.util.concurrent.ExecutorService;
+// import java.util.concurrent.Executors;
+// import java.util.concurrent.ThreadPoolExecutor;
+
+// public class Main {
+//     public static void main(String[] args) {
+//         int cores = Runtime.getRuntime().availableProcessors(); 
+//         ExecutorService pool = Executors.newCachedThreadPool();
+//         ThreadPoolExecutor pool1 = (ThreadPoolExecutor) Executors.newCachedThreadPool(); // this way we can use more methods for example we can change the ideal thread time for termination
+//         for (int i = 0; i < 20; i++) {
+//             pool.submit(new Task());           
+//         }
+       
+//     }
+// }
+
+// class Task implements Runnable{
+//     public void run(){
+//         for (int i = 0; true; i++) {
+//             System.out.println(i);
+//             Thread t1 = new Thread(){
+//                 public void run(){
+//                     System.out.println();
+//                 }
+//             };
+//         }
+//     }
+// }
+
+//! cached Threadpool
+//When the pool is created no thread is created, it depends on the tasks if you sumbit 10 tasks it will create 10 threads, 100 100 threads, but if you have an ideal thread....
+// and you submit a task to it and the 60 second of the ideal thread hasnt passed, it will not create another thread but rather uses the ideal thread to execute the task
+// automatically if a thread was ideal for 60secs, java will terminate it 
+// This sol is very dynamic and it it really good when you have lots of small tasks                    
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class Main {
     public static void main(String[] args) {
-        int cores = Runtime.getRuntime().availableProcessors(); // it will tell you your logical cores
-        ExecutorService pool = Executors.newFixedThreadPool(cores);
+        int cores = Runtime.getRuntime().availableProcessors(); 
+        ExecutorService pool = Executors.newCachedThreadPool();
+        ThreadPoolExecutor pool1 = (ThreadPoolExecutor) Executors.newCachedThreadPool(); // this way we can use more methods for example we can change the ideal thread time for termination
+        ScheduledThreadPool p2 = Executors.newFixedThreadPool(10);
+        p2.submit(new Runnable() {
+            
+        })
         for (int i = 0; i < 20; i++) {
             pool.submit(new Task());           
         }
+       
     }
 }
 
@@ -95,5 +207,3 @@ class Task implements Runnable{
         }
     }
 }
-
-//_______________________part One 
