@@ -133,44 +133,44 @@ package Lecture11;
   //this only is good for increment and decremment if you have more complex operations, this might lead to thread unsafity
   // if you add two atomic ints they might not be thread safe, 
 
-  import java.util.concurrent.atomic.*;
-// either update or not 
-public class Main {
+//   import java.util.concurrent.atomic.*;
+// // either update or not 
+// public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
-      CounterResult cr = new CounterResult();
-      Thread t1 = new UpdateCounterThread(cr);
-          Thread t2 = new UpdateCounterThread(cr);
+//     public static void main(String[] args) throws InterruptedException {
+//       CounterResult cr = new CounterResult();
+//       Thread t1 = new UpdateCounterThread(cr);
+//           Thread t2 = new UpdateCounterThread(cr);
   
-          t1.start();
-          t2.start();
-          t1.join();
-          t2.join();
-          System.out.println(cr.getResult());
-    }  
-  }
+//           t1.start();
+//           t2.start();
+//           t1.join();
+//           t2.join();
+//           System.out.println(cr.getResult());
+//     }  
+//   }
   
-  class CounterResult{
-    private AtomicInteger aCounter = new AtomicInteger(1); //the one below does not work cause they are not integers
+//   class CounterResult{
+//     private AtomicInteger aCounter = new AtomicInteger(1); //the one below does not work cause they are not integers
     
-      public int getResult(){
-          return aCounter.get();
-      }
+//       public int getResult(){
+//           return aCounter.get();
+//       }
   
-      public void compute(){
-        int old = 0;
-          for (int i = 0; i < 10000; i++) {
-            //   aCounter.incrementAndGet();
-            if(aCounter.compareAndSet(old, old+1)){
-              //! It takes two arguments: the expected value and the new value. If the current value of the variable is equal to the expected value, then the variable is set to the new value, and the method returns true. If the current value of the variable is not equal to the expected value, then the variable is not modified, and the method returns false.
-                old = getResult(); 
-            }else{
-                old = getResult();
-                i--;
-            }
-          }
-      }
-  }
+//       public void compute(){
+//         int old = 0;
+//           for (int i = 0; i < 10000; i++) {
+//             //   aCounter.incrementAndGet();
+//             if(aCounter.compareAndSet(old, old+1)){
+//               //! It takes two arguments: the expected value and the new value. If the current value of the variable is equal to the expected value, then the variable is set to the new value, and the method returns true. If the current value of the variable is not equal to the expected value, then the variable is not modified, and the method returns false.
+//                 old = getResult(); 
+//             }else{
+//                 old = getResult();
+//                 i--;
+//             }
+//           }
+//       }
+//   }
 
 
 
@@ -178,38 +178,38 @@ public class Main {
 
 
 
-  class Counter {
-    private AtomicInteger counter = new AtomicInteger(0);
+//   class Counter {
+//     private AtomicInteger counter = new AtomicInteger(0);
 
-    public void compute() {
-        int oldValue = 0;
-        for (int i = 0; i < 2000000; i++) {
-            if (!counter.compareAndSet(oldValue, oldValue + 1)) {
-                i--; // retry the operation if the value has changed in the memory
-            }
-            oldValue = getCounter();
-        }
-    }
+//     public void compute() {
+//         int oldValue = 0;
+//         for (int i = 0; i < 2000000; i++) {
+//             if (!counter.compareAndSet(oldValue, oldValue + 1)) {
+//                 i--; // retry the operation if the value has changed in the memory
+//             }
+//             oldValue = getCounter();
+//         }
+//     }
 
-    public int getCounter() {
-        return counter.get();
-    }
-}
+//     public int getCounter() {
+//         return counter.get();
+//     }
+// }
 
 
 
 
   
-   class UpdateCounterThread extends Thread {
-      private CounterResult cr ; 
-      public UpdateCounterThread( CounterResult cr){
-          this.cr = cr;
-      }
-      @Override
-      public void run() {
-          cr.compute();
-      }
-  }
+//    class UpdateCounterThread extends Thread {
+//       private CounterResult cr ; 
+//       public UpdateCounterThread( CounterResult cr){
+//           this.cr = cr;
+//       }
+//       @Override
+//       public void run() {
+//           cr.compute();
+//       }
+//   }
   // !atomic are goood for one value or one variable at a time, for complex ops use locks
 
 //! AtomicIntegerArray midterm or final exam 
@@ -222,20 +222,20 @@ public class Main {
 
 // Here's an example of how to use AtomicIntegerArray:
 
-// scss
-// Copy code
-// AtomicIntegerArray arr = new AtomicIntegerArray(5);
+AtomicIntegerArray arr = new AtomicIntegerArray(5);
+[6,7,3,4,5]
+arr.set(0, 1); 
+arr.set(1, 2);
+arr.set(2, 3);
+arr.set(3, 4);
+arr.set(4, 5);
 
-// arr.set(0, 1);
-// arr.set(1, 2);
-// arr.set(2, 3);
-// arr.set(3, 4);
-// arr.set(4, 5);
+int oldValue = arr.getAndSet(0, 6); // returns 1
+int value = arr.getAndSet(1, 7)
+value =2 
+int newValue = arr.get(2); // returns 3
 
-// int oldValue = arr.getAndSet(0, 6); // returns 1
-// int newValue = arr.get(0); // returns 6
-
-// boolean swapped = arr.compareAndSet(1, 2, 7); // returns true
+boolean swapped = arr.compareAndSet(1, 2, 7); // returns true
 // In the example, we create an instance of AtomicIntegerArray with a size of 5 and set some initial values. We then use the getAndSet method to atomically set the value at index 0 to 6 and get its previous value. We also use the compareAndSet method to atomically update the value at index 1 from 2 to 7 if it's currently 2.
   
 

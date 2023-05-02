@@ -3,7 +3,7 @@ package Lecture12;
 import java.util.concurrent.atomic.AtomicReference;
 
 //!Atomic References
-// allows you to updaet or get a refrence for an obj in a thread safe manner
+// allows you to update or get a refrence for an obj in a thread safe manner
 
 // The need for AtomicReference arises when multiple threads need to update or access
 //  the same shared reference variable. In a multi-threaded environment, if two or more threads
@@ -11,39 +11,40 @@ import java.util.concurrent.atomic.AtomicReference;
 //  data inconsistencies, and other concurrency-related issues. AtomicReference provides a way
 //  to avoid these issues by providing thread-safe access to the reference variable,
 //  which eliminates the need for explicit synchronization and ensures consistent updates across all threads
-// public class Main {
-//     public static void main(String[] args) {
+public class Main {
+    public static void main(String[] args) {
         
-//     }
-// }
+    }
+}
 
-// /**
-//  * Employee
-//  */
-//  class Employee {
-//     String name; int id;
-// }
-// AtomicRefrence<Employee> ref = new AtomicReference<>();
-// ref.set(new Employee());
-// ref.get().name = "mai";
-// ref.get().id = 5;
-// static Employee e = new Employee(); //volatile wont save you here, 
-// e.name = "maya";
-// e.id = 5;
+/**
+ * Employee
+ */
+ class Employee {
+    String name; int id;
+}
+AtomicRefrence<Employee> ref = new AtomicReference<>();
+Employee e1 = new Employee();
+ref.set(e1);
+ref.get().name = "mai";
+ref.get().id = 5;
+static Employee e = new Employee(); //volatile wont save you here, 
+e.name = "maya";
+e.id = 5;
 
-// class t1{
-//     run(){
-//         System.out.println(e.name);
-//         System.out.println(e.id);
-//     }
-// }
-// class t2{
-//     run(){
-//         e = new Employee();
-//         e.name = "soemals";
-//         e.id = 11;
-//     }
-// }
+class t1 extends Thread{
+    void run(){
+        System.out.println(e.name);
+        System.out.println(e.id);
+    }
+}
+class t2 extends Thread{
+    void run(){
+        e = new Employee();
+        e.name = "soemals";
+        e.id = 11;
+    }
+}
 
 // is this code thread safe? one thread reads and the other writes hte shared obj
 
