@@ -20,7 +20,7 @@ class SharedObject {
     // one right and one read always the right occur first...... advantage
 }
 
-//what happens when one thread performs r w and the other r w also ... it is not thread safe cause this is another problem data inconsistency and race condoiition 
+// what happens when one thread performs r w and the other r w also ... it is not thread safe cause this is another problem data inconsistency and race condoiition 
 
 
 // locks are sloower than volatile 
@@ -53,29 +53,29 @@ class SharedObject {
 
 
 
-class sharedobject2{
-    ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-    private int sCount = 0;
+// class sharedobject2{
+//     ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+//     private int sCount = 0;
 
-    public void inc(){
-        Lock writeLock = lock.writeLock();
-        writeLock.lock();
-        try{
-            sCount++;
-        } finally{
-            writeLock.unlock();
-        }
-    }
-    public int GET(){
-        Lock readLock = lock.readLock();
-        readLock.lock();
-        try{
-            return sCount;
-        } finally{
-            readLock.unlock();
-        }
-    }
-}
+//     public void inc(){
+//         Lock writeLock = lock.writeLock();
+//         writeLock.lock();
+//         try{
+//             sCount++;
+//         } finally{
+//             writeLock.unlock();
+//         }
+//     }
+//     public int GET(){
+//         Lock readLock = lock.readLock();
+//         readLock.lock();
+//         try{
+//             return sCount;
+//         } finally{
+//             readLock.unlock();
+//         }
+//     }
+// }
 
 
 

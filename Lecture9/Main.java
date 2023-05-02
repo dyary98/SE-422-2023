@@ -56,7 +56,7 @@ import java.util.concurrent.TimeUnit;
 //!----------------------------------------------------------------------
 //!----------------------------------------------------------------------
 
-// class ComputeSum implements Callable<Integer>{
+// class ComputeSum implements Callable<Integer>{ //ishi ama away zhmara la iak tawakw limit kobkatawa
 //     private int limit;
 //     private int result;
 
@@ -79,13 +79,18 @@ import java.util.concurrent.TimeUnit;
 // public class Main {
 
 //     public static void main(String[] args) throws InterruptedException, ExecutionException {
-//         ExecutorService pool = Executors.newFixedThreadPool(1);   
-//         ComputeSum cs = new ComputeSum(10000);
-//         Future<Integer> f = pool.submit(cs);
+        
+//         ExecutorService pool = Executors.newFixedThreadPool(1);   //yak thread drwst krawa
+//         ComputeSum cs = new ComputeSum(10000); // zhmarakanman la 0 tawkaw 100000 sum krdwa
+        
+//         Future<Integer> futre = pool.submit(cs); // 7sabka task tekrdwa
         
 //         System.out.println("the result using the old way: "+cs.getResult());
-//         System.out.println("the result: "+f.get());
-//         System.out.println("the result using the old way: "+cs.getResult());
+
+//         System.out.println("the result: "+futre.get()); // am method
+//         // a ishaka awastene 
+
+//         System.out.println("the result using : "+cs.getResult());
 
 //         //!if you run this code you will get the result: 0
 //         // because the sysout is retriving the result value, in a time where the computation havent started yet
@@ -96,16 +101,12 @@ import java.util.concurrent.TimeUnit;
 
 
 
-/**
- * computeResult
- */
+
 //  class ComputeResult {
 //     public int sum;
 //     public long fact;
 // }
-// /**
-//  * ComputeSum 
-//  */
+
 //  class ComputeSum implements Callable<ComputeResult> {
 
 //     private int limit;
@@ -141,10 +142,9 @@ import java.util.concurrent.TimeUnit;
 
 //     public static void main(String[] args) throws InterruptedException, ExecutionException {
 //         ExecutorService pool = Executors.newFixedThreadPool(1);   
-//         ComputeSum cs = new ComputeSum(10000);
+//         ComputeSum cs = new ComputeSum(10000); //callable yan task 
 //         Future<ComputeResult> f = pool.submit(cs);
-//         ComputeResult response = f.get();
-
+//         ComputeResult response = f.get(); // awaste hatawkw responsaki pe aga         
 //         System.out.println(response.sum);
 //         System.out.println(response.fact);
 //     }
@@ -157,42 +157,42 @@ import java.util.concurrent.TimeUnit;
 
 
 
-//  class ComputeResult {
-//     public int sum;
-//     public long fact;
-// }
-// /**
-//  * ComputeSum 
-//  */
-//  class ComputeSum implements Callable<ComputeResult> {
+ class ComputeResult {
+    public int sum;
+    public long fact;
+}
+/**
+ * ComputeSum 
+ */
+ class ComputeSum implements Callable<ComputeResult> {
 
-//     private int limit;
-//     private int result;
-//     public long factorial = 1;
+    private int limit;
+    private int result;
+    public long factorial = 1;
 
-//     public ComputeSum(int limit){
-//         this.limit = limit;
-//     }
-//     public int getResult() {
-//         return result;
-//     }
+    public ComputeSum(int limit){
+        this.limit = limit;
+    }
+    public int getResult() {
+        return result;
+    }
     
     
-//     @Override
-//     public ComputeResult call() {
-//         ComputeResult object1 = new ComputeResult();
-//         for (int i = 0; i < limit + 1; i++) {
-//             result += i;
-//         }
-//         object1.sum = result;
-//         for (int i = 1; i < limit + 1; i++) {
-//             factorial *= i;
-//             System.out.println(factorial +" ");
-//         }
-//         object1.fact =factorial;
-//         return object1;
-//     }
-// }
+    @Override
+    public ComputeResult call() {
+        ComputeResult object1 = new ComputeResult();
+        for (int i = 0; i < limit + 1; i++) {
+            result += i;
+        }
+        object1.sum = result;
+        for (int i = 1; i < limit + 1; i++) {
+            factorial *= i;
+            System.out.println(factorial +" ");
+        }
+        object1.fact =factorial;
+        return object1;
+    }
+}
 
 
 // public class Main {
@@ -223,14 +223,14 @@ import java.util.concurrent.TimeUnit;
 // }
 
 
-public class Main {
+// public class Main {
 
-    public static void main(String[] args) {
+//     public static void main(String[] args) {
         
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 100, 10L, TimeUnit.SECONDS, LinkedBlockingQueue<Runnable>());
-        //thread 1 ---------------- > 100 -------------- queue
-        for (int i = 0; i < 30; i++) {
-            executor.submit(new Task());
-        }
-    }
-}
+//         ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 100, 10L, TimeUnit.SECONDS, LinkedBlockingQueue<Runnable>());
+//         //thread 1 ---------------- > 100 -------------- queue
+//         for (int i = 0; i < 30; i++) {
+//             executor.submit(new Task());
+//         }
+//     }
+// }

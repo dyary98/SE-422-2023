@@ -1,6 +1,6 @@
 package Lecture11;
-//Introduction to Atomic Variables
-//in class lab create two user threads to add all numbers from 0 to 20 to a shared variable called counter and print the result in the main thread
+// Introduction to Atomic Variables
+// in class lab create two user threads to add all numbers from 0 to 20 to a shared variable called counter and print the result in the main thread
 
 // public class Main {
 //     public static void main(String[] args) {
@@ -34,7 +34,7 @@ package Lecture11;
 //   public static void main(String[] args) throws InterruptedException {
 //     CounterResult cr = new CounterResult();
 //     Thread t1 = new UpdateCounterThread(cr);
-//         Thread t2 = new UpdateCounterThread(cr);
+//     Thread t2 = new UpdateCounterThread(cr);
 
 //         t1.start();
 //         t2.start();
@@ -51,7 +51,7 @@ package Lecture11;
 //     }
 
 //     public void compute(){
-//         for (int i = 0; i < 40; i++) {
+//         for (int i = 0; i < 4000; i++) {
 //             counter += i;
 //         }
 //     }
@@ -88,7 +88,7 @@ package Lecture11;
 //     public static void main(String[] args) throws InterruptedException {
 //       CounterResult cr = new CounterResult();
 //       Thread t1 = new UpdateCounterThread(cr);
-//           Thread t2 = new UpdateCounterThread(cr);
+//       Thread t2 = new UpdateCounterThread(cr);
   
 //           t1.start();
 //           t2.start();
@@ -100,22 +100,20 @@ package Lecture11;
   
 //   class CounterResult{
 //     private AtomicInteger aCounter = new AtomicInteger(1); //the one below does not work cause they are not integers
-//     // private AtomicInteger aCounter = 4; this does not work 
+//     // private AtomicInteger aCounter = 4; //this does not work 
     
-//       private int counter;
 //       public int getResult(){
-//         //   return counter;
 //           return aCounter.get();
 //       }
   
 //       public void compute(){
 //           for (int i = 0; i < 10000; i++) {
-//               counter += 1;
-//               aCounter.incrementAndGet();
+//               aCounter.incrementAndGet(); // old 6 + 1 = 7 return 7
+//               aCounter.getAndIncrement(); // old 6 return 6  dway old 6 + 1 = 7
 //               // this perform increment operation in a thread safe manner withoutusing locks
 //             //   aCounter.getAndIncrement();
 //             // aCounter.decrementAndGet();
-//             aCounter.addAndGet(i);
+//             aCounter.addAndGet(23456);
 //           }
 //       }
 //   }
@@ -173,6 +171,34 @@ public class Main {
           }
       }
   }
+
+
+
+
+
+
+
+  class Counter {
+    private AtomicInteger counter = new AtomicInteger(0);
+
+    public void compute() {
+        int oldValue = 0;
+        for (int i = 0; i < 2000000; i++) {
+            if (!counter.compareAndSet(oldValue, oldValue + 1)) {
+                i--; // retry the operation if the value has changed in the memory
+            }
+            oldValue = getCounter();
+        }
+    }
+
+    public int getCounter() {
+        return counter.get();
+    }
+}
+
+
+
+
   
    class UpdateCounterThread extends Thread {
       private CounterResult cr ; 
@@ -183,7 +209,6 @@ public class Main {
       public void run() {
           cr.compute();
       }
-      
   }
   // !atomic are goood for one value or one variable at a time, for complex ops use locks
 
