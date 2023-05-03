@@ -41,6 +41,7 @@ class T1 extends Thread{
         //addAll
         //ds.remove(); //! removes from the head, oldest data will be removed first 
         //ds.peek();
+        //ds.poll() //! retrives and removes hte head of this q, or return null if q is empty
     }
     //!how to iterate through this datastructure
     //!firstway
